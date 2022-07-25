@@ -1,5 +1,6 @@
 package com.stanxu.controller;
 
+import com.stanxu.pojo.bo.UserBO;
 import com.stanxu.service.UserService;
 import com.stanxu.utils.JSONResult;
 import org.apache.commons.lang3.StringUtils;
@@ -7,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("passport")
@@ -37,4 +35,43 @@ public class PassportController {
         //username does not exist
         return JSONResult.ok();
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @PostMapping("/register")
+    public JSONResult register(@RequestBody UserBO userBO){
+
+        String username = userBO.getUsername();
+        String password = userBO.getPassword();
+        String confirmPassword = userBO.getConfirmPassword();
+
+        //0. check username and pwd are not empty
+        if (StringUtils.isBlank(username) ||
+                StringUtils.isBlank(password) ||
+                StringUtils.isBlank(confirmPassword)){
+            return JSONResult.errorMsg("username or password cannot be empty !");
+        }
+
+        //1. check username exists
+        boolean isUsernameExists = userService.IsUsernameExist(username);
+        if (isUsernameExists){
+            return JSONResult.errorMsg("username exists !");
+        }
+
+        //2. check the pwd length must not be less than 6 digits
+        if (password.length() < 6){
+            return JSONResult.errorMsg("the pwd length must not be less than 6 digits !");
+        }
+
+        //3. check if the two pwds are the same
+        if (!password.equals(confirmPassword)){
+            return JSONResult.errorMsg("the two pwds are not the same !");
+        }
+
+        //4. register user
+        userService.createUser(userBO);
+
+        //created user done.
+        return JSONResult.ok();
+    }
+
 }

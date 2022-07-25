@@ -4,6 +4,7 @@ com/stanxu/pojo/Stu.class
 com/stanxu/pojo/Orders.class
 com/stanxu/pojo/Carousel.class
 com/stanxu/pojo/ItemsComments.class
+com/stanxu/pojo/bo/UserBO.class
 com/stanxu/pojo/OrderItems.class
 com/stanxu/pojo/ItemsSpec.class
 com/stanxu/pojo/Category.class
