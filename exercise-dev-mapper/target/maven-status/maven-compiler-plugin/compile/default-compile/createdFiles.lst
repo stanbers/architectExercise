@@ -1,0 +1,14 @@
+com/stanxu/mapper/ItemsParamMapper.class
+com/stanxu/mapper/CategoryMapper.class
+com/stanxu/mapper/ItemsSpecMapper.class
+com/stanxu/mapper/StuMapper.class
+com/stanxu/mapper/ItemsImgMapper.class
+com/stanxu/mapper/CarouselMapper.class
+com/stanxu/mapper/UsersMapper.class
+com/stanxu/mapper/UserAddressMapper.class
+com/stanxu/mapper/ItemsMapper.class
+com/stanxu/mapper/ItemsCommentsMapper.class
+com/stanxu/mapper/OrderItemsMapper.class
+com/stanxu/mapper/OrderStatusMapper.class
+com/stanxu/my/mapper/MyMapper.class
+com/stanxu/mapper/OrdersMapper.class
