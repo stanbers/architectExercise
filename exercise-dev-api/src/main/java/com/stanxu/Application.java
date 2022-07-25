@@ -5,17 +5,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import tk.mybatis.spring.annotation.MapperScan;
+
 @SpringBootApplication
-@RestController
+@MapperScan(basePackages = "com.stanxu.mapper")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class,args);
     }
 
-    @GetMapping("/hello")
-    public String hello(@RequestParam(value = "name",defaultValue = "World") String name){
-        return String.format("Hello %s!",name);
-    }
+//    @GetMapping("/hello")
+//    public String hello(@RequestParam(value = "name",defaultValue = "World") String name){
+//        return String.format("Hello %s!",name);
+//    }
 }
 //2.3.4.RELEASE/spring-boot-autoconfigure-2.3.4.RELEASE.jar!/org/springframework/boot/autoconfigure/transaction/TransactionAutoConfiguration.class
 //2.3.4.RELEASE/spring-boot-autoconfigure-2.3.4.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/transaction/TransactionAutoConfiguration.java
