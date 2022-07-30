@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -133,5 +134,18 @@ public class PassportController {
         users.setMobile(null);
 
         return users;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @PostMapping("/logout")
+    @ApiOperation(value = "User logout", notes = "User logout", httpMethod = "POST")
+    public JSONResult logout(@RequestParam String userId, HttpServletRequest request, HttpServletResponse response){
+
+        CookieUtils.deleteCookie(request,response,"user");
+
+        //TODO need to clear out shopping cart when user logout
+        //TODO need to clear out user data in distribution session when user logout
+
+        return JSONResult.ok();
     }
 }

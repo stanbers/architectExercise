@@ -66,11 +66,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Users queryUserForLogin(String username, String password) {
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
 
         Example userExample = new Example(Users.class);
         Example.Criteria criteria = userExample.createCriteria();
