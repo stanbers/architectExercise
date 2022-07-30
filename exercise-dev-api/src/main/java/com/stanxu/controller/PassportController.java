@@ -34,7 +34,7 @@ public class PassportController {
         //username exists
         boolean isUsernameExist = userService.IsUsernameExist(username);
         if (isUsernameExist){
-            return JSONResult.errorMap("username exists !");
+            return JSONResult.errorMsg("username exists !");
         }
 
         //username does not exist
