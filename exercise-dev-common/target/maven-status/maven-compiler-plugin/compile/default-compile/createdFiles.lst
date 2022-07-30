@@ -18,9 +18,11 @@ org/n3r/idworker/utils/Utils.class
 org/n3r/idworker/utils/Props$Silent.class
 org/n3r/idworker/strategy/FileLock.class
 com/stanxu/enums/Sex.class
+com/stanxu/utils/CookieUtils.class
 org/n3r/idworker/strategy/DayPrefixRandomCodeStrategy.class
 org/n3r/idworker/Id.class
 org/n3r/idworker/Sid.class
+com/stanxu/utils/JsonUtils.class
 org/n3r/idworker/Sid$1.class
 org/n3r/idworker/strategy/DefaultWorkerIdStrategy$1.class
 org/n3r/idworker/strategy/DefaultWorkerIdStrategy.class

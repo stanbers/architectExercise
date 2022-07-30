@@ -3,7 +3,9 @@ package com.stanxu.controller;
 import com.stanxu.pojo.Users;
 import com.stanxu.pojo.bo.UserBO;
 import com.stanxu.service.UserService;
+import com.stanxu.utils.CookieUtils;
 import com.stanxu.utils.JSONResult;
+import com.stanxu.utils.JsonUtils;
 import com.stanxu.utils.MD5Utils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
@@ -14,6 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Api(value = "User register and sign in", tags = "For user register and sign in")
 @RestController
@@ -46,7 +51,7 @@ public class PassportController {
     @Transactional(propagation = Propagation.REQUIRED)
     @PostMapping("/register")
     @ApiOperation(value = "Register User", notes = "Register User", httpMethod = "POST")
-    public JSONResult register(@RequestBody UserBO userBO){
+    public JSONResult register(@RequestBody UserBO userBO, HttpServletRequest request, HttpServletResponse response){
 
 
         String username = userBO.getUsername();
@@ -77,16 +82,20 @@ public class PassportController {
         }
 
         //4. register user
-        userService.createUser(userBO);
+        Users user = userService.createUser(userBO);
+
+        user = setPropertyNull(user);
+
+        CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(user),true);
 
         //created user done.
-        return JSONResult.ok();
+        return JSONResult.ok(user);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @PostMapping("/login")
     @ApiOperation(value = "User login", notes = "User login", httpMethod = "POST")
-    public JSONResult login(@RequestBody UserBO userBO)throws Exception{
+    public JSONResult login(@RequestBody UserBO userBO, HttpServletRequest request, HttpServletResponse response)throws Exception{
 
 
         String username = userBO.getUsername();
@@ -106,8 +115,23 @@ public class PassportController {
             return JSONResult.errorMsg("username or password incorrect !");
         }
 
+        user = setPropertyNull(user);
+
+        CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(user),true);
+
         //login user done.
         return JSONResult.ok(user);
     }
 
+    //set private property to null.
+    private Users setPropertyNull(Users users){
+        users.setPassword(null);
+        users.setRealname(null);
+        users.setUpdatedTime(null);
+        users.setCreatedTime(null);
+        users.setBirthday(null);
+        users.setMobile(null);
+
+        return users;
+    }
 }
