@@ -1,8 +1,10 @@
 package com.stanxu.controller;
 
+import com.stanxu.pojo.Users;
 import com.stanxu.pojo.bo.UserBO;
 import com.stanxu.service.UserService;
 import com.stanxu.utils.JSONResult;
+import com.stanxu.utils.MD5Utils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
@@ -79,6 +81,33 @@ public class PassportController {
 
         //created user done.
         return JSONResult.ok();
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @PostMapping("/login")
+    @ApiOperation(value = "User login", notes = "User login", httpMethod = "POST")
+    public JSONResult login(@RequestBody UserBO userBO)throws Exception{
+
+
+        String username = userBO.getUsername();
+        String password = userBO.getPassword();
+
+        //0. check username and pwd are not empty
+        if (StringUtils.isBlank(username) ||
+                StringUtils.isBlank(password) ){
+            return JSONResult.errorMsg("username or password cannot be empty !");
+        }
+
+        //1. user login
+        Users user = userService.queryUserForLogin(username,
+                MD5Utils.getMD5Str(password));
+
+        if (user == null){
+            return JSONResult.errorMsg("username or password incorrect !");
+        }
+
+        //login user done.
+        return JSONResult.ok(user);
     }
 
 }

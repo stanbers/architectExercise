@@ -9,4 +9,6 @@ public interface UserService {
     boolean IsUsernameExist(String username);
 
     public Users createUser(UserBO userBO);
+
+    public Users queryUserForLogin(String username, String password);
 }
