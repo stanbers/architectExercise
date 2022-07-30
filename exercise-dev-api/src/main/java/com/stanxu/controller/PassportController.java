@@ -3,6 +3,9 @@ package com.stanxu.controller;
 import com.stanxu.pojo.bo.UserBO;
 import com.stanxu.service.UserService;
 import com.stanxu.utils.JSONResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+@Api(value = "User register and sign in", tags = "For user register and sign in")
 @RestController
 @RequestMapping("passport")
 public class PassportController {
@@ -19,6 +23,7 @@ public class PassportController {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @GetMapping("/isUsernameExist")
+    @ApiOperation(value = "Check user exists", notes = "Check user exists", httpMethod = "GET")
     public JSONResult isUsernameExist(@RequestParam(value = "username") String username){
 
         //username cannot be empty
@@ -38,7 +43,9 @@ public class PassportController {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @PostMapping("/register")
+    @ApiOperation(value = "Register User", notes = "Register User", httpMethod = "POST")
     public JSONResult register(@RequestBody UserBO userBO){
+
 
         String username = userBO.getUsername();
         String password = userBO.getPassword();
