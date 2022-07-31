@@ -1,4 +1,6 @@
+com/stanxu/service/impl/CategoryServiceImpl.class
 com/stanxu/service/CarouselService.class
+com/stanxu/service/CategoryService.class
 com/stanxu/service/impl/UserServiceImpl.class
 com/stanxu/service/impl/CarouselServiceImpl.class
 com/stanxu/service/UserService.class
