@@ -1,6 +1,7 @@
 org/n3r/idworker/DayCode.class
 org/n3r/idworker/strategy/DefaultRandomCodeStrategy.class
 org/n3r/idworker/strategy/DefaultWorkerIdStrategy$2.class
+com/stanxu/enums/YesOrNo.class
 org/n3r/idworker/utils/Ip.class
 org/n3r/idworker/RandomCodeStrategy.class
 org/n3r/idworker/utils/Serializes.class

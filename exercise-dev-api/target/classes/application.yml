@@ -30,7 +30,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml      # mapper映射文件
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    
+
 ############################################################
 #
 # web访问端口号  约定：8088

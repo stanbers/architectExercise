@@ -1,4 +1,5 @@
 com/stanxu/controller/PassportController.class
 com/stanxu/aspect/ServiceLogAspect.class
 com/stanxu/Application.class
+com/stanxu/controller/IndexController.class
 com/stanxu/config/Swagger2.class
