@@ -3,13 +3,16 @@ package com.stanxu.controller;
 import com.stanxu.enums.YesOrNo;
 import com.stanxu.pojo.Carousel;
 import com.stanxu.pojo.Category;
+import com.stanxu.pojo.vo.CategoryVO;
 import com.stanxu.service.CarouselService;
 import com.stanxu.service.CategoryService;
 import com.stanxu.utils.JSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,5 +43,20 @@ public class IndexController {
 
         List<Category> categoryList = categoryService.queryRootCategory();
         return JSONResult.ok(categoryList);
+    }
+
+    @GetMapping("/subCat/{rootCatId}")
+    @ApiOperation(value = "Get all sub categories", notes = "Get all sub categories", httpMethod = "GET")
+    public JSONResult subCat(
+            @ApiParam(name = "rootCatId", value = "root category id", required = true)
+            @PathVariable Integer rootCatId){
+
+        if (rootCatId == null){
+            return JSONResult.errorMsg("category does not exists !");
+        }
+
+        List<CategoryVO> voList = categoryService.getSubCatList(rootCatId);
+
+        return JSONResult.ok(voList);
     }
 }
