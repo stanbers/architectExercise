@@ -37,16 +37,16 @@ public class ItemsController {
             return JSONResult.errorMsg(null);
         }
 
-        Items items = itemService.queryItemById(itemId);
+        Items item = itemService.queryItemById(itemId);
         List<ItemsImg> itemsImgList = itemService.queryItemsImgList(itemId);
         List<ItemsSpec> itemsSpecsList = itemService.queryItemsSpecList(itemId);
         ItemsParam itemsParam = itemService.queryItemsParam(itemId);
 
         ItemInfoVO itemInfoVO = new ItemInfoVO();
-        itemInfoVO.setItems(items);
-        itemInfoVO.setItemsParam(itemsParam);
-        itemInfoVO.setItemsImgList(itemsImgList);
-        itemInfoVO.setItemsSpecList(itemsSpecsList);
+        itemInfoVO.setItem(item);
+        itemInfoVO.setItemParams(itemsParam);
+        itemInfoVO.setItemImgList(itemsImgList);
+        itemInfoVO.setItemSpecList(itemsSpecsList);
 
         return JSONResult.ok(itemInfoVO);
     }
