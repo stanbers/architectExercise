@@ -8,6 +8,7 @@ import com.stanxu.pojo.vo.ItemInfoVO;
 import com.stanxu.pojo.vo.ItemsCommentsCountsVO;
 import com.stanxu.service.ItemService;
 import com.stanxu.utils.JSONResult;
+import com.stanxu.utils.PagedGridResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -62,5 +63,26 @@ public class ItemsController {
         ItemsCommentsCountsVO countsVO = itemService.queryItemsCommentsCounts(itemId);
 
         return JSONResult.ok(countsVO);
+    }
+
+    @ApiOperation(value = "Query comments level",notes = "Query comments level", httpMethod = "GET")
+    @GetMapping("/comments")
+    public JSONResult comments(
+            @ApiParam(name = "itemId",value = "item id",required = true)
+            @RequestParam String itemId,
+            @ApiParam(name = "level",value = "level",required = false)
+            @RequestParam Integer level,
+            @ApiParam(name = "page",value = "page",required = false)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "pageSize",required = false)
+            @RequestParam Integer pageSize){
+
+        if (StringUtils.isBlank(itemId)){
+            return JSONResult.errorMsg(null);
+        }
+
+        PagedGridResult gridResult = itemService.queryItemsCommentsLevels(itemId,level,page,pageSize);
+
+        return JSONResult.ok(gridResult);
     }
 }

@@ -13,3 +13,4 @@ com/stanxu/mapper/OrderStatusMapper.class
 com/stanxu/my/mapper/MyMapper.class
 com/stanxu/mapper/CategoryMapperCustom.class
 com/stanxu/mapper/OrdersMapper.class
+com/stanxu/mapper/ItemsMapperCustom.class

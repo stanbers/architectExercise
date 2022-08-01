@@ -4,7 +4,9 @@ import com.stanxu.pojo.Items;
 import com.stanxu.pojo.ItemsImg;
 import com.stanxu.pojo.ItemsParam;
 import com.stanxu.pojo.ItemsSpec;
+import com.stanxu.pojo.vo.CommentsLevelVO;
 import com.stanxu.pojo.vo.ItemsCommentsCountsVO;
+import com.stanxu.utils.PagedGridResult;
 
 import java.util.List;
 
@@ -19,4 +21,6 @@ public interface ItemService {
     public ItemsParam queryItemsParam(String itemId);
 
     public ItemsCommentsCountsVO queryItemsCommentsCounts(String itemId);
+
+    public PagedGridResult queryItemsCommentsLevels(String itemId, Integer level, Integer page, Integer pageSize);
 }

@@ -1,6 +1,8 @@
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-api/src/main/java/com/stanxu/config/Swagger2.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-api/src/main/java/com/stanxu/config/CorsConfig.java
+/Users/Stan/IdeaProjects/architectExercise/exercise-dev-api/src/main/java/com/stanxu/controller/ItemsController.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-api/src/main/java/com/stanxu/Application.java
+/Users/Stan/IdeaProjects/architectExercise/exercise-dev-api/src/main/java/com/stanxu/controller/IndexController.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-api/src/main/java/com/stanxu/aspect/ServiceLogAspect.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-api/src/main/java/com/stanxu/controller/StuFooController.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-api/src/main/java/com/stanxu/controller/PassportController.java

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stanxu.mapper.ItemsMapperCustom" >
+  <resultMap id="commentsLevel" type="com.stanxu.pojo.vo.CommentsLevelVO" >
+    <result column="comment_level" property="commentLevel" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="sepc_name" property="specName" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="DATE" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="face" property="userFace" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryCommentsLevel" parameterType="Map" resultMap="commentsLevel">
+    SELECT
+      ic.comment_level as commentLevel,
+      ic.content as content,
+      ic.sepc_name as specName,
+      ic.created_time as createdTime,
+      u.nickname as nickname,
+      u.face as userFace
+    FROM items_comments ic
+    LEFT JOIN users u
+    on ic.user_id = u.id
+    WHERE ic.item_id = #{paramsMap.itemId}
+    <if test=" paramsMap.level != null and paramsMap.level != '' ">
+      AND ic.comment_level = #{paramsMap.level}
+    </if>
+<!--    WHERE ic.item_id = 'cake-1001'-->
+<!--    AND ic.comment_level = 1;-->
+  </select>
+
+</mapper>
