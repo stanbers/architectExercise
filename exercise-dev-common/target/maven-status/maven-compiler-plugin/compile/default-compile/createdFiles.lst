@@ -27,4 +27,5 @@ org/n3r/idworker/Sid.class
 com/stanxu/utils/JsonUtils.class
 org/n3r/idworker/Sid$1.class
 org/n3r/idworker/strategy/DefaultWorkerIdStrategy$1.class
+com/stanxu/utils/DesensitizationUtil.class
 org/n3r/idworker/strategy/DefaultWorkerIdStrategy.class

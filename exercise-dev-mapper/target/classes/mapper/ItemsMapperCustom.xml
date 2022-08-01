@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stanxu.mapper.ItemsMapperCustom" >
-  <resultMap id="commentsLevel" type="com.stanxu.pojo.vo.CommentsLevelVO" >
-    <result column="comment_level" property="commentLevel" jdbcType="INTEGER" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="sepc_name" property="specName" jdbcType="VARCHAR" />
-    <result column="created_time" property="createdTime" jdbcType="DATE" />
-    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
-    <result column="face" property="userFace" jdbcType="VARCHAR" />
-  </resultMap>
-  <select id="queryCommentsLevel" parameterType="Map" resultMap="commentsLevel">
+<!--  <resultMap id="commentsLevel" type="com.stanxu.pojo.vo.CommentsLevelVO" >-->
+<!--    <result column="comment_level" property="commentLevel" jdbcType="INTEGER" />-->
+<!--    <result column="content" property="content" jdbcType="VARCHAR" />-->
+<!--    <result column="sepc_name" property="specName" jdbcType="VARCHAR" />-->
+<!--    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" /> what's the correct type ?-->
+<!--    <result column="nickname" property="nickname" jdbcType="VARCHAR" />-->
+<!--    <result column="face" property="userFace" jdbcType="VARCHAR" /> what's the correct type ?-->
+<!--  </resultMap>-->
+  <select id="queryCommentsLevel" parameterType="Map" resultType="com.stanxu.pojo.vo.CommentsLevelVO">
     SELECT
       ic.comment_level as commentLevel,
       ic.content as content,

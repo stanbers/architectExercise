@@ -8,6 +8,7 @@ import com.stanxu.pojo.*;
 import com.stanxu.pojo.vo.CommentsLevelVO;
 import com.stanxu.pojo.vo.ItemsCommentsCountsVO;
 import com.stanxu.service.ItemService;
+import com.stanxu.utils.DesensitizationUtil;
 import com.stanxu.utils.JSONResult;
 import com.stanxu.utils.PagedGridResult;
 import jdk.nashorn.internal.runtime.JSONFunctions;
@@ -115,6 +116,10 @@ public class ItemServiceImpl implements ItemService {
         PageHelper.startPage(page, pageSize);
 
         List<CommentsLevelVO> list = itemsMapperCustom.queryCommentsLevel(map);
+
+        for (CommentsLevelVO levelVO: list) {
+            levelVO.setNickname(DesensitizationUtil.commonDisplay(levelVO.getNickname()));
+        }
 
         return setPageGrid(list, page);
     }
