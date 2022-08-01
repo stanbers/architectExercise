@@ -4,6 +4,7 @@ import com.stanxu.enums.YesOrNo;
 import com.stanxu.pojo.Carousel;
 import com.stanxu.pojo.Category;
 import com.stanxu.pojo.vo.CategoryVO;
+import com.stanxu.pojo.vo.NewItemsVO;
 import com.stanxu.service.CarouselService;
 import com.stanxu.service.CategoryService;
 import com.stanxu.utils.JSONResult;
@@ -58,5 +59,20 @@ public class IndexController {
         List<CategoryVO> voList = categoryService.getSubCatList(rootCatId);
 
         return JSONResult.ok(voList);
+    }
+
+    @GetMapping("/sixNewItems/{rootCatId}")
+    @ApiOperation(value = "Get six new items under every root category", notes = "Get six new items under every root category", httpMethod = "GET")
+    public JSONResult sixNewItems(
+            @ApiParam(name = "rootCatId", value = "root category id", required = true)
+            @PathVariable Integer rootCatId){
+
+        if (rootCatId == null){
+            return JSONResult.errorMsg("category does not exists !");
+        }
+
+        List<NewItemsVO> newItemsVOList = categoryService.getSixNewItemsLazy(rootCatId);
+
+        return JSONResult.ok(newItemsVOList);
     }
 }

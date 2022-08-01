@@ -10,4 +10,6 @@ public interface CategoryService {
     public List<Category> queryRootCategory();
 
     public List<CategoryVO> getSubCatList(Integer rootCatId);
+
+    public List getSixNewItemsLazy(Integer rootCatId);
 }
