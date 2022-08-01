@@ -13,6 +13,7 @@ com/stanxu/pojo/Category.class
 com/stanxu/pojo/vo/SubCategoryVO.class
 com/stanxu/pojo/OrderStatus.class
 com/stanxu/pojo/Items.class
+com/stanxu/pojo/vo/ItemInfoVO.class
 com/stanxu/pojo/vo/CategoryVO.class
 com/stanxu/pojo/Users.class
 com/stanxu/pojo/UserAddress.class
