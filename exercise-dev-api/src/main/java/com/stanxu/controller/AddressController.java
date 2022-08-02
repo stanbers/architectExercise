@@ -51,6 +51,26 @@ public class AddressController {
         return JSONResult.ok();
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    @PostMapping("/update")
+    @ApiOperation(value = "Update address", notes = "Update address", httpMethod = "POST")
+    public JSONResult update(@RequestBody UserAddressBO userAddressBO){
+
+        if (StringUtils.isBlank(userAddressBO.getAddressId())){
+            return JSONResult.errorMsg("address id cannot be null !");
+        }
+
+        JSONResult validateAddress = checkAddress(userAddressBO);
+
+        if (validateAddress.getStatus() != 200){
+            return validateAddress;
+        }
+
+        addressService.updateAddress(userAddressBO);
+
+        return JSONResult.ok();
+    }
+
     private JSONResult checkAddress(UserAddressBO addressBO) {
         String receiver = addressBO.getReceiver();
         if (StringUtils.isBlank(receiver)) {

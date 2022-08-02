@@ -58,4 +58,17 @@ public class AddressServiceImpl implements AddressService {
 
         userAddressMapper.insert(userAddress);
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void updateAddress(UserAddressBO userAddressBO) {
+
+        UserAddress updateAddress = new UserAddress();
+        BeanUtils.copyProperties(userAddressBO, updateAddress);
+
+        updateAddress.setId(userAddressBO.getAddressId());
+        updateAddress.setUpdatedTime(new Date());
+
+        userAddressMapper.updateByPrimaryKeySelective(updateAddress);
+    }
 }

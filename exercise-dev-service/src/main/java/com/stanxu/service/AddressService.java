@@ -10,4 +10,6 @@ public interface AddressService {
     public List<UserAddress> queryAllUserAddress(String userId);
 
     public void addNewAddress(UserAddressBO userAddressBO);
+
+    public void updateAddress(UserAddressBO userAddressBO);
 }
