@@ -6,6 +6,7 @@ com/stanxu/pojo/bo/ShopcartItemBO.class
 com/stanxu/pojo/Stu.class
 com/stanxu/pojo/Orders.class
 com/stanxu/pojo/vo/CommentsLevelVO.class
+com/stanxu/pojo/vo/ShopcartVO.class
 com/stanxu/pojo/Carousel.class
 com/stanxu/pojo/ItemsComments.class
 com/stanxu/pojo/vo/SimpleItemVO.class

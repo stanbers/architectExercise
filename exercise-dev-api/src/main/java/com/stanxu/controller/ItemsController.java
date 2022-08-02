@@ -7,6 +7,7 @@ import com.stanxu.pojo.ItemsParam;
 import com.stanxu.pojo.ItemsSpec;
 import com.stanxu.pojo.vo.ItemInfoVO;
 import com.stanxu.pojo.vo.ItemsCommentsCountsVO;
+import com.stanxu.pojo.vo.ShopcartVO;
 import com.stanxu.service.ItemService;
 import com.stanxu.utils.JSONResult;
 import com.stanxu.utils.PagedGridResult;
@@ -151,5 +152,20 @@ public class ItemsController {
         PagedGridResult gridResult = itemService.searchItemsByThirdCat(catId,sort,page,pageSize);
 
         return JSONResult.ok(gridResult);
+    }
+
+    @ApiOperation(value = "Render shopping car list via item_spec ids",notes = "Render shopping car list via item_spec ids", httpMethod = "GET")
+    @GetMapping("/refresh")
+    public JSONResult refresh(
+            @ApiParam(name = "itemSpecIds",value = "item spec ids",required = true)
+            @RequestParam String itemSpecIds){
+
+        if (itemSpecIds == null){
+            return JSONResult.ok();
+        }
+
+        List<ShopcartVO> list = itemService.queryShopcartItemsBySpecIds(itemSpecIds);
+
+        return JSONResult.ok(list);
     }
 }

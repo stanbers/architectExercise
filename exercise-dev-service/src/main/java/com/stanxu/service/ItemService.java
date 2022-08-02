@@ -7,6 +7,7 @@ import com.stanxu.pojo.ItemsSpec;
 import com.stanxu.pojo.vo.CommentsLevelVO;
 import com.stanxu.pojo.vo.ItemsCommentsCountsVO;
 import com.stanxu.pojo.vo.SearchItemsVO;
+import com.stanxu.pojo.vo.ShopcartVO;
 import com.stanxu.utils.PagedGridResult;
 
 import java.util.List;
@@ -28,4 +29,6 @@ public interface ItemService {
     public PagedGridResult searchItems(String keywords, String sort, Integer page, Integer pageSize);
 
     public PagedGridResult searchItemsByThirdCat(Integer catId, String sort, Integer page, Integer pageSize);
+
+    public List<ShopcartVO> queryShopcartItemsBySpecIds(String specIds);
 }

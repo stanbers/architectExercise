@@ -8,6 +8,7 @@ import com.stanxu.pojo.*;
 import com.stanxu.pojo.vo.CommentsLevelVO;
 import com.stanxu.pojo.vo.ItemsCommentsCountsVO;
 import com.stanxu.pojo.vo.SearchItemsVO;
+import com.stanxu.pojo.vo.ShopcartVO;
 import com.stanxu.service.ItemService;
 import com.stanxu.utils.DesensitizationUtil;
 import com.stanxu.utils.JSONResult;
@@ -19,9 +20,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -163,5 +162,18 @@ public class ItemServiceImpl implements ItemService {
         List<SearchItemsVO> list = itemsMapperCustom.searchItemsByThirdCat(map);
 
         return setPageGrid(list, page);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<ShopcartVO> queryShopcartItemsBySpecIds(String specIds) {
+
+        String [] ids = specIds.split(",");
+        List<String> list = new ArrayList<String>();
+        Collections.addAll(list,ids);
+
+        List<ShopcartVO> shopcartVOList = itemsMapperCustom.queryShopcartItemsBySpecIds(list);
+
+        return shopcartVOList;
     }
 }

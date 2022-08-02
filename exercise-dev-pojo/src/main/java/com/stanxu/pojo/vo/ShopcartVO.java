@@ -1,16 +1,11 @@
-package com.stanxu.pojo.bo;
+package com.stanxu.pojo.vo;
 
-import io.swagger.annotations.ApiModel;
-
-//@ApiModel(value = "Shopping cart BO",description = "Shopping cart object from F/E")
-public class ShopcartItemBO {
-
+public class ShopcartVO {
     private String itemId;
     private String itemImgUrl;
     private String itemName;
     private String specId;
     private String specName;
-    private Integer buyCounts;
     private String priceDiscount;
     private String priceNormal;
 
@@ -54,14 +49,6 @@ public class ShopcartItemBO {
         this.specName = specName;
     }
 
-    public Integer getBuyCounts() {
-        return buyCounts;
-    }
-
-    public void setBuyCounts(Integer buyCounts) {
-        this.buyCounts = buyCounts;
-    }
-
     public String getPriceDiscount() {
         return priceDiscount;
     }
@@ -76,19 +63,5 @@ public class ShopcartItemBO {
 
     public void setPriceNormal(String priceNormal) {
         this.priceNormal = priceNormal;
-    }
-
-    @Override
-    public String toString() {
-        return "ShopcartItemBO{" +
-                "itemId='" + itemId + '\'' +
-                ", itemImgUrl='" + itemImgUrl + '\'' +
-                ", itemName='" + itemName + '\'' +
-                ", specId='" + specId + '\'' +
-                ", specName='" + specName + '\'' +
-                ", buyCounts=" + buyCounts +
-                ", priceDiscount=" + priceDiscount +
-                ", priceNormal=" + priceNormal +
-                '}';
     }
 }

@@ -93,6 +93,32 @@
       </otherwise>
     </choose>
   </select>
+
+  <select id="queryShopcartItemsBySpecIds" parameterType="List" resultType="com.stanxu.pojo.vo.ShopcartVO">
+    select
+      i.id as itemId,
+      i.item_name as itemName,
+      isp.`name` as specName,
+      isp.id as specId,
+      isp.price_discount as priceDiscount,
+      isp.price_normal as priceNormal,
+      ii.url as itemImgUrl
+    FROM items_spec isp
+    LEFT JOIN
+      items i
+    ON i.id = isp.item_id
+    LEFT JOIN
+      items_img ii
+    ON ii.item_id = i.id
+    WHERE
+      ii.is_main =1
+    AND isp.id IN
+      <foreach collection="paramsList" open="(" separator="," close=")" index="index" item="specId">
+        #{specId}
+      </foreach>
+  </select>
+
+  <!--    ('1','3','5');-->
   <!-- k: 默认，代表默认排序，根据name-->
   <!-- c: 根据销量排序-->
   <!-- p: 根据价格排序-->
