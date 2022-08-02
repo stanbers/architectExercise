@@ -1,9 +1,11 @@
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/impl/ItemServiceImpl.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/impl/StuServiceImpl.java
+/Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/impl/AddressServiceImpl.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/impl/UserServiceImpl.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/impl/CategoryServiceImpl.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/CategoryService.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/ItemService.java
+/Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/AddressService.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/UserService.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/CarouselService.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-service/src/main/java/com/stanxu/service/StuService.java

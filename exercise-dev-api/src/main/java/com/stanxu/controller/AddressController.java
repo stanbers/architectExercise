@@ -72,6 +72,20 @@ public class AddressController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
+    @PostMapping("/setDefalut")
+    @ApiOperation(value = "Switch default address", notes = "Switch default address", httpMethod = "POST")
+    public JSONResult setDefalut(@RequestParam String userId,
+                             @RequestParam String addressId){
+
+        if (StringUtils.isBlank(userId) || StringUtils.isBlank(addressId)){
+            return JSONResult.errorMsg("");
+        }
+
+        addressService.updateAddressToDefault(userId, addressId);
+
+        return JSONResult.ok();
+    }
+    @Transactional(propagation = Propagation.REQUIRED)
     @PostMapping("/delete")
     @ApiOperation(value = "Delete address", notes = "Delete address", httpMethod = "POST")
     public JSONResult delete(@RequestParam String userId,

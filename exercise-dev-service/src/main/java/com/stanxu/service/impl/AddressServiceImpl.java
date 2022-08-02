@@ -1,5 +1,6 @@
 package com.stanxu.service.impl;
 
+import com.stanxu.enums.YesOrNo;
 import com.stanxu.mapper.UserAddressMapper;
 import com.stanxu.pojo.UserAddress;
 import com.stanxu.pojo.bo.UserAddressBO;
@@ -82,5 +83,31 @@ public class AddressServiceImpl implements AddressService {
         userAddress.setUserId(userId);
 
         userAddressMapper.delete(userAddress);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void updateAddressToDefault(String userid, String addressId) {
+        //1.update default address's is_default to 0
+
+        UserAddress userAddress = new UserAddress();
+        userAddress.setUserId(userid);
+        userAddress.setIsDefault(YesOrNo.YES.type);
+        List<UserAddress> userAddressList = userAddressMapper.select(userAddress);
+        for (UserAddress address : userAddressList){
+            address.setIsDefault(YesOrNo.NO.type);
+            userAddressMapper.updateByPrimaryKeySelective(address);
+        }
+
+
+        //2.update target address's is_default to 1
+        UserAddress defaultAddress = new UserAddress();
+        defaultAddress.setId(addressId);
+        defaultAddress.setUserId(userid);
+        defaultAddress.setIsDefault(YesOrNo.YES.type);
+
+        userAddressMapper.updateByPrimaryKeySelective(defaultAddress);
+
+
     }
 }
