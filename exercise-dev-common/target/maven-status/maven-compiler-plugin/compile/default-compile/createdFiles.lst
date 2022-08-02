@@ -16,6 +16,7 @@ org/n3r/idworker/Test.class
 org/n3r/idworker/utils/HttpReq.class
 com/stanxu/utils/DateUtil.class
 org/n3r/idworker/utils/Props.class
+com/stanxu/utils/MobileEmailUtils.class
 org/n3r/idworker/utils/Utils.class
 org/n3r/idworker/utils/Props$Silent.class
 org/n3r/idworker/strategy/FileLock.class
