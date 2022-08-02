@@ -71,6 +71,21 @@ public class AddressController {
         return JSONResult.ok();
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    @PostMapping("/delete")
+    @ApiOperation(value = "Delete address", notes = "Delete address", httpMethod = "POST")
+    public JSONResult delete(@RequestParam String userId,
+                             @RequestParam String addressId){
+
+        if (StringUtils.isBlank(userId) || StringUtils.isBlank(addressId)){
+            return JSONResult.errorMsg("");
+        }
+
+        addressService.deleteAddress(userId, addressId);
+
+        return JSONResult.ok();
+    }
+
     private JSONResult checkAddress(UserAddressBO addressBO) {
         String receiver = addressBO.getReceiver();
         if (StringUtils.isBlank(receiver)) {

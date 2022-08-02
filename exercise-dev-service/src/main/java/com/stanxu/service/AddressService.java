@@ -12,4 +12,6 @@ public interface AddressService {
     public void addNewAddress(UserAddressBO userAddressBO);
 
     public void updateAddress(UserAddressBO userAddressBO);
+
+    public void deleteAddress(String userId, String addressId);
 }

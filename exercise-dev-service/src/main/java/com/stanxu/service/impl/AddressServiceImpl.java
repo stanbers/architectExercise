@@ -4,6 +4,7 @@ import com.stanxu.mapper.UserAddressMapper;
 import com.stanxu.pojo.UserAddress;
 import com.stanxu.pojo.bo.UserAddressBO;
 import com.stanxu.service.AddressService;
+import org.apache.catalina.User;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,16 @@ public class AddressServiceImpl implements AddressService {
         updateAddress.setUpdatedTime(new Date());
 
         userAddressMapper.updateByPrimaryKeySelective(updateAddress);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void deleteAddress(String userId, String addressId) {
+        UserAddress userAddress = new UserAddress();
+
+        userAddress.setId(addressId);
+        userAddress.setUserId(userId);
+
+        userAddressMapper.delete(userAddress);
     }
 }
