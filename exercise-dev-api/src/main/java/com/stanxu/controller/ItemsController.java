@@ -123,4 +123,33 @@ public class ItemsController {
 
         return JSONResult.ok(gridResult);
     }
+
+    @ApiOperation(value = "Search items",notes = "Search items", httpMethod = "GET")
+    @GetMapping("/catItems")
+    public JSONResult catItems(
+            @ApiParam(name = "catId",value = "category Id",required = true)
+            @RequestParam Integer catId,
+            @ApiParam(name = "sort",value = "sort",required = false)
+            @RequestParam String sort,
+            @ApiParam(name = "page",value = "page",required = false)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "pageSize",required = false)
+            @RequestParam Integer pageSize){
+
+        if (catId == null){
+            return JSONResult.errorMsg(null);
+        }
+
+        if (page == null){
+            page = 1;
+        }
+
+        if (pageSize == null){
+            pageSize = BaseController.PAGE_SIZE;
+        }
+
+        PagedGridResult gridResult = itemService.searchItemsByThirdCat(catId,sort,page,pageSize);
+
+        return JSONResult.ok(gridResult);
+    }
 }
