@@ -124,7 +124,7 @@ public class ItemsController {
         return JSONResult.ok(gridResult);
     }
 
-    @ApiOperation(value = "Search items",notes = "Search items", httpMethod = "GET")
+    @ApiOperation(value = "Search items via category id",notes = "Search items via category id", httpMethod = "GET")
     @GetMapping("/catItems")
     public JSONResult catItems(
             @ApiParam(name = "catId",value = "category Id",required = true)

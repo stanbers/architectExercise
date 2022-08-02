@@ -2,6 +2,7 @@ com/stanxu/pojo/vo/SearchItemsVO.class
 com/stanxu/pojo/ItemsParam.class
 com/stanxu/pojo/vo/NewItemsVO.class
 com/stanxu/pojo/ItemsImg.class
+com/stanxu/pojo/bo/ShopcartItemBO.class
 com/stanxu/pojo/Stu.class
 com/stanxu/pojo/Orders.class
 com/stanxu/pojo/vo/CommentsLevelVO.class

@@ -1,4 +1,5 @@
 com/stanxu/controller/ItemsController.class
+com/stanxu/controller/ShopCartController.class
 com/stanxu/controller/PassportController.class
 com/stanxu/aspect/ServiceLogAspect.class
 com/stanxu/controller/BaseController.class
