@@ -1,5 +1,6 @@
 package com.stanxu.controller;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.stanxu.pojo.Items;
 import com.stanxu.pojo.ItemsImg;
 import com.stanxu.pojo.ItemsParam;
@@ -81,7 +82,44 @@ public class ItemsController {
             return JSONResult.errorMsg(null);
         }
 
+        if (page == null){
+            page = 1;
+        }
+
+        if (pageSize == null){
+            pageSize = BaseController.COMMON_PAGE_SIZE;
+        }
+
         PagedGridResult gridResult = itemService.queryItemsCommentsLevels(itemId,level,page,pageSize);
+
+        return JSONResult.ok(gridResult);
+    }
+
+    @ApiOperation(value = "Search items",notes = "Search items", httpMethod = "GET")
+    @GetMapping("/search")
+    public JSONResult search(
+            @ApiParam(name = "keywords",value = "keywords",required = true)
+            @RequestParam String keywords,
+            @ApiParam(name = "sort",value = "sort",required = false)
+            @RequestParam String sort,
+            @ApiParam(name = "page",value = "page",required = false)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "pageSize",required = false)
+            @RequestParam Integer pageSize){
+
+        if (StringUtils.isBlank(keywords)){
+            return JSONResult.errorMsg(null);
+        }
+
+        if (page == null){
+            page = 1;
+        }
+
+        if (pageSize == null){
+            pageSize = BaseController.PAGE_SIZE;
+        }
+
+        PagedGridResult gridResult = itemService.searchItems(keywords,sort,page,pageSize);
 
         return JSONResult.ok(gridResult);
     }

@@ -4,6 +4,7 @@
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-common/src/main/java/com/stanxu/utils/JsonUtils.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-common/src/main/java/org/n3r/idworker/utils/Serializes.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-common/src/main/java/com/stanxu/utils/CookieUtils.java
+/Users/Stan/IdeaProjects/architectExercise/exercise-dev-common/src/main/java/com/stanxu/utils/DesensitizationUtil.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-common/src/main/java/org/n3r/idworker/strategy/DefaultRandomCodeStrategy.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-common/src/main/java/org/n3r/idworker/utils/Props.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-common/src/main/java/org/n3r/idworker/utils/Utils.java

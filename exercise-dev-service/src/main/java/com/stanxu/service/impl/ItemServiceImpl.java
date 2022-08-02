@@ -7,6 +7,7 @@ import com.stanxu.mapper.*;
 import com.stanxu.pojo.*;
 import com.stanxu.pojo.vo.CommentsLevelVO;
 import com.stanxu.pojo.vo.ItemsCommentsCountsVO;
+import com.stanxu.pojo.vo.SearchItemsVO;
 import com.stanxu.service.ItemService;
 import com.stanxu.utils.DesensitizationUtil;
 import com.stanxu.utils.JSONResult;
@@ -134,5 +135,19 @@ public class ItemServiceImpl implements ItemService {
         grid.setRecords(pageList.getTotal());
 
         return grid;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult searchItems(String keywords, String sort, Integer page, Integer pageSize) {
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("keywords", keywords);
+        map.put("sort", sort);
+
+        PageHelper.startPage(page, pageSize);
+
+        List<SearchItemsVO> list = itemsMapperCustom.searchItems(map);
+
+        return setPageGrid(list, page);
     }
 }

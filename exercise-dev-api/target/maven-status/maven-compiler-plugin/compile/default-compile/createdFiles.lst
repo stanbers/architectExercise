@@ -1,6 +1,7 @@
 com/stanxu/controller/ItemsController.class
 com/stanxu/controller/PassportController.class
 com/stanxu/aspect/ServiceLogAspect.class
+com/stanxu/controller/BaseController.class
 com/stanxu/Application.class
 com/stanxu/controller/IndexController.class
 com/stanxu/config/Swagger2.class
