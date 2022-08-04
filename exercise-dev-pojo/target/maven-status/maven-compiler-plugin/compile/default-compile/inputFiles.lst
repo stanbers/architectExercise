@@ -1,5 +1,6 @@
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/Orders.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/OrderStatus.java
+/Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/vo/MerchantOrdersVO.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/Carousel.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/Items.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/vo/CategoryVO.java
@@ -23,4 +24,5 @@
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/bo/UserAddressBO.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/OrderItems.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/Category.java
+/Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/vo/OrderVO.java
 /Users/Stan/IdeaProjects/architectExercise/exercise-dev-pojo/src/main/java/com/stanxu/pojo/bo/SubmitOrderBO.java

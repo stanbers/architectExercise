@@ -140,12 +140,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void notifyMerchantOrderPaid(String merchantOrderId) {
+    public void notifyMerchantOrderPaid(String merchantOrderId, Integer orderStatus) {
 
-        OrderStatus orderStatus = new OrderStatus();
-        orderStatus.setOrderId(merchantOrderId);
-        orderStatus.setPayTime(new Date());
-        orderStatus.setOrderStatus(OrderStatusEnum.WAIT_DELIVER.type);
-        orderStatusMapper.updateByPrimaryKeySelective(orderStatus);
+        OrderStatus paidorderStatus = new OrderStatus();
+        paidorderStatus.setOrderId(merchantOrderId);
+        paidorderStatus.setPayTime(new Date());
+        paidorderStatus.setOrderStatus(orderStatus);
+        orderStatusMapper.updateByPrimaryKeySelective(paidorderStatus);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public OrderStatus getPaidOrderInfo(String orderId) {
+        return orderStatusMapper.selectByPrimaryKey(orderId);
     }
 }

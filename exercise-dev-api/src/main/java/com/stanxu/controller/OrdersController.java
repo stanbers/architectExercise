@@ -1,6 +1,8 @@
 package com.stanxu.controller;
 
+import com.stanxu.enums.OrderStatusEnum;
 import com.stanxu.enums.PayMethod;
+import com.stanxu.pojo.OrderStatus;
 import com.stanxu.pojo.bo.SubmitOrderBO;
 import com.stanxu.pojo.vo.MerchantOrdersVO;
 import com.stanxu.pojo.vo.OrderVO;
@@ -48,8 +50,8 @@ public class OrdersController extends BaseController {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.add("imoocUserId","imooc");
-        httpHeaders.add("password","imooc");
+        httpHeaders.add("imoocUserId","1543468846");
+        httpHeaders.add("password","y45t-54tg");
 
         HttpEntity<MerchantOrdersVO> httpEntity = new HttpEntity<>(merchantOrdersVO,httpHeaders);
         ResponseEntity<JSONResult> response = restTemplate.postForEntity(paymentUrl,httpEntity,JSONResult.class);
@@ -58,6 +60,7 @@ public class OrdersController extends BaseController {
             JSONResult.errorMsg("build merchant order failed ! pls contact administrator !");
         }
 
+        logger.info("&&&&&&&&&& " + paymentResult.getMsg());
         logger.info("**********order id is : " + orderId);
         return JSONResult.ok(orderId);
     }
@@ -68,8 +71,20 @@ public class OrdersController extends BaseController {
         // after pay done, return pre-pay transaction link from pay system to merchant b/e system
         // sample: http://localhost:8088/orders/notifyMerchantOrderPaid
         // meanwhile, update the pay status to WAIT_DELIVER(20, "已付款，待发货")
-        orderService.notifyMerchantOrderPaid(merchantOrderId);
+        orderService.notifyMerchantOrderPaid(merchantOrderId, OrderStatusEnum.WAIT_DELIVER.type);
 
         return HttpStatus.OK.value();
     }
+
+    //http://qwqc4g.natappfree.cc
+    //http://qbssid.natappfree.cc
+
+    @PostMapping("/getPaidOrderInfo")
+    public JSONResult getPaidOrderInfo(String orderId){
+
+        OrderStatus orderStatus = orderService.getPaidOrderInfo(orderId);
+
+        return JSONResult.ok(orderStatus);
+    }
+
 }
