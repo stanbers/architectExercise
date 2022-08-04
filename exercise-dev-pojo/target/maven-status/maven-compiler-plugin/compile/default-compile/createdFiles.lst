@@ -7,6 +7,7 @@ com/stanxu/pojo/bo/UserBO.class
 com/stanxu/pojo/OrderItems.class
 com/stanxu/pojo/Category.class
 com/stanxu/pojo/vo/SubCategoryVO.class
+com/stanxu/pojo/vo/OrderVO.class
 com/stanxu/pojo/vo/CategoryVO.class
 com/stanxu/pojo/Users.class
 com/stanxu/pojo/bo/UserAddressBO.class
@@ -18,6 +19,7 @@ com/stanxu/pojo/vo/CommentsLevelVO.class
 com/stanxu/pojo/vo/ShopcartVO.class
 com/stanxu/pojo/Carousel.class
 com/stanxu/pojo/vo/SimpleItemVO.class
+com/stanxu/pojo/vo/MerchantOrdersVO.class
 com/stanxu/pojo/ItemsSpec.class
 com/stanxu/pojo/OrderStatus.class
 com/stanxu/pojo/Items.class

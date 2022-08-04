@@ -1,3 +1,4 @@
+com/stanxu/config/WebMvcConfig.class
 com/stanxu/controller/PassportController.class
 com/stanxu/aspect/ServiceLogAspect.class
 com/stanxu/controller/OrdersController.class
