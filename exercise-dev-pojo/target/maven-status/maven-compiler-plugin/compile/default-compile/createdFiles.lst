@@ -12,6 +12,7 @@ com/stanxu/pojo/Users.class
 com/stanxu/pojo/bo/UserAddressBO.class
 com/stanxu/pojo/ItemsParam.class
 com/stanxu/pojo/vo/NewItemsVO.class
+com/stanxu/pojo/bo/SubmitOrderBO.class
 com/stanxu/pojo/ItemsImg.class
 com/stanxu/pojo/vo/CommentsLevelVO.class
 com/stanxu/pojo/vo/ShopcartVO.class

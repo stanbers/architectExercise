@@ -7,6 +7,7 @@ org/n3r/idworker/utils/Ip.class
 org/n3r/idworker/RandomCodeStrategy.class
 org/n3r/idworker/utils/Serializes.class
 org/n3r/idworker/WorkerIdStrategy.class
+com/stanxu/enums/OrderStatusEnum.class
 org/n3r/idworker/InvalidSystemClock.class
 org/n3r/idworker/Code.class
 org/n3r/idworker/utils/IPv4Utils.class

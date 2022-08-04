@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("index")
-@Api(value = "Homepage", tags = "{API in homepage}")
+@Api(value = "Homepage", tags = "API in homepage")
 public class IndexController {
 
     @Autowired

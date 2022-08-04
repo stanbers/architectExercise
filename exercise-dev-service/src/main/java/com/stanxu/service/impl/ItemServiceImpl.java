@@ -3,6 +3,7 @@ package com.stanxu.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.stanxu.enums.CommentsLevel;
+import com.stanxu.enums.YesOrNo;
 import com.stanxu.mapper.*;
 import com.stanxu.pojo.*;
 import com.stanxu.pojo.vo.CommentsLevelVO;
@@ -175,5 +176,35 @@ public class ItemServiceImpl implements ItemService {
         List<ShopcartVO> shopcartVOList = itemsMapperCustom.queryShopcartItemsBySpecIds(list);
 
         return shopcartVOList;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public ItemsSpec queryItemSpecBySpecId(String specId) {
+
+        ItemsSpec itemsSpec = new ItemsSpec();
+        itemsSpec.setId(specId);
+
+        return itemsSpecMapper.selectOne(itemsSpec);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public String queryItemsMainImgByItemId(String itemId) {
+
+        ItemsImg itemsImg = new ItemsImg();
+        itemsImg.setItemId(itemId);
+        itemsImg.setIsMain(YesOrNo.YES.type);
+        ItemsImg img = itemsImgMapper.selectOne(itemsImg);
+        return img == null ? img.getUrl() : "";
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void decreaseInventoryAfterOrderPlaced(int pendingCounts, String specId) {
+        int result = itemsMapperCustom.decreaseInventoryAfterOrderPlaced(pendingCounts, specId);
+        if (result != 1){
+            throw new RuntimeException("item inventory is not enough ! place order failed !");
+        }
     }
 }

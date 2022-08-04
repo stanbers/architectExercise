@@ -1,4 +1,4 @@
-package com.imooc.enums;
+package com.stanxu.enums;
 
 /**
  * @Description: 订单状态 枚举

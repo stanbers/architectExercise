@@ -95,7 +95,7 @@
   </select>
 
   <select id="queryShopcartItemsBySpecIds" parameterType="List" resultType="com.stanxu.pojo.vo.ShopcartVO">
-    select
+    SELECT
       i.id as itemId,
       i.item_name as itemName,
       isp.`name` as specName,
@@ -122,4 +122,17 @@
   <!-- k: 默认，代表默认排序，根据name-->
   <!-- c: 根据销量排序-->
   <!-- p: 根据价格排序-->
+
+  <update id="decreaseInventoryAfterOrderPlaced" >
+    UPDATE
+      items_spec
+    SET
+      stock = stock - #{pendingCounts}
+    WHERE
+      id = #{specId}
+    AND
+      stock >= #{pendingCounts}
+  </update>
+
+
 </mapper>
