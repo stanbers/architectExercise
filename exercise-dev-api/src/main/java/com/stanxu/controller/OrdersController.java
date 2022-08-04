@@ -7,10 +7,8 @@ import com.stanxu.utils.JSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,15 @@ public class OrdersController {
         String orderId = orderService.createOrder(submitOrderBO);
 
         return JSONResult.ok(orderId);
+    }
+
+    @PostMapping("/notifyMerchantOrderPaid")
+    public Integer notifyMerchantOrderPaid(String merchantOrderId){
+
+        // after pay done, return pre-pay transaction link from pay system to merchant b/e system
+        // meanwhile, update the pay status to WAIT_DELIVER(20, "已付款，待发货")
+        orderService.notifyMerchantOrderPaid(merchantOrderId);
+
+        return HttpStatus.OK.value();
     }
 }

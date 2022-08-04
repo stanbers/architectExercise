@@ -6,4 +6,6 @@ public interface OrderService {
 
     public String createOrder(SubmitOrderBO submitOrderBO);
 
+    public void notifyMerchantOrderPaid(String merchantOrderId);
+
 }

@@ -12,7 +12,10 @@ import com.stanxu.service.ItemService;
 import com.stanxu.service.OrderService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -37,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderStatusMapper orderStatusMapper;
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public String createOrder(SubmitOrderBO submitOrderBO) {
         String userId = submitOrderBO.getUserId();
@@ -117,5 +121,16 @@ public class OrderServiceImpl implements OrderService {
         orderStatusMapper.insert(orderStatus);
 
         return orderId;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void notifyMerchantOrderPaid(String merchantOrderId) {
+
+        OrderStatus orderStatus = new OrderStatus();
+        orderStatus.setOrderId(merchantOrderId);
+        orderStatus.setPayTime(new Date());
+        orderStatus.setOrderStatus(OrderStatusEnum.WAIT_DELIVER.type);
+        orderStatusMapper.updateByPrimaryKeySelective(orderStatus);
     }
 }
