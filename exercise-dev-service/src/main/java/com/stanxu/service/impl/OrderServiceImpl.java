@@ -1,12 +1,15 @@
 package com.stanxu.service.impl;
 
 import com.stanxu.enums.OrderStatusEnum;
+import com.stanxu.enums.PayMethod;
 import com.stanxu.enums.YesOrNo;
 import com.stanxu.mapper.OrderItemsMapper;
 import com.stanxu.mapper.OrderStatusMapper;
 import com.stanxu.mapper.OrdersMapper;
 import com.stanxu.pojo.*;
 import com.stanxu.pojo.bo.SubmitOrderBO;
+import com.stanxu.pojo.vo.MerchantOrdersVO;
+import com.stanxu.pojo.vo.OrderVO;
 import com.stanxu.service.AddressService;
 import com.stanxu.service.ItemService;
 import com.stanxu.service.OrderService;
@@ -42,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public String createOrder(SubmitOrderBO submitOrderBO) {
+    public OrderVO createOrder(SubmitOrderBO submitOrderBO) {
         String userId = submitOrderBO.getUserId();
         String itemSpecIds = submitOrderBO.getItemSpecIds();
         String addressId = submitOrderBO.getAddressId();
@@ -120,7 +123,19 @@ public class OrderServiceImpl implements OrderService {
         orderStatus.setCreatedTime(new Date());
         orderStatusMapper.insert(orderStatus);
 
-        return orderId;
+        // build merchant order
+        MerchantOrdersVO merchantOrdersVO = new MerchantOrdersVO();
+        merchantOrdersVO.setMerchantOrderId(orderId);
+        merchantOrdersVO.setMerchantUserId(userId);
+        merchantOrdersVO.setAmount(totalPayDiscountAmount+postAmount);
+        merchantOrdersVO.setPayMethod(payMethod);
+
+        // build customize VO for pay system
+        OrderVO orderVO = new OrderVO();
+        orderVO.setMerchantOrdersVO(merchantOrdersVO);
+        orderVO.setOrderId(orderId);
+
+        return orderVO;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
