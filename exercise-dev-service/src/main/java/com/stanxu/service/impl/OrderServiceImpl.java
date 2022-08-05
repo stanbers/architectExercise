@@ -13,6 +13,8 @@ import com.stanxu.pojo.vo.OrderVO;
 import com.stanxu.service.AddressService;
 import com.stanxu.service.ItemService;
 import com.stanxu.service.OrderService;
+import com.stanxu.utils.DateUtil;
+import org.apache.commons.lang3.time.DateUtils;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -153,5 +156,33 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderStatus getPaidOrderInfo(String orderId) {
         return orderStatusMapper.selectByPrimaryKey(orderId);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void closeOrder() {
+        OrderStatus orderStatus = new OrderStatus();
+        orderStatus.setOrderStatus(OrderStatusEnum.WAIT_PAY.type);
+        List<OrderStatus> orderStatusList = orderStatusMapper.select(orderStatus);
+
+        for (OrderStatus os : orderStatusList){
+            Date orderCreatedTime = os.getCreatedTime();
+            int days = DateUtil.daysBetween(orderCreatedTime, new Date());
+//            System.out.println(days+"**********");
+            if(days >= 1) {
+                doCloseOrder(os.getOrderId());
+            }
+        }
+
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    void doCloseOrder(String orderId){
+        OrderStatus orderStatus = new OrderStatus();
+        orderStatus.setOrderId(orderId);
+        orderStatus.setCloseTime(new Date());
+        orderStatus.setOrderStatus(OrderStatusEnum.CLOSE.type);
+
+        orderStatusMapper.updateByPrimaryKeySelective(orderStatus);
     }
 }

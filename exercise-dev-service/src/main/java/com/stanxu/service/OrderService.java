@@ -12,4 +12,6 @@ public interface OrderService {
 
     public OrderStatus getPaidOrderInfo(String orderId);
 
+    public void closeOrder();
+
 }

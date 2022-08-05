@@ -4,6 +4,7 @@ com/stanxu/aspect/ServiceLogAspect.class
 com/stanxu/controller/OrdersController.class
 com/stanxu/controller/ItemsController.class
 com/stanxu/controller/ShopCartController.class
+com/stanxu/config/OrderJobs.class
 com/stanxu/controller/AddressController.class
 com/stanxu/controller/BaseController.class
 com/stanxu/Application.class
